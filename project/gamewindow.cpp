@@ -8,17 +8,14 @@ gameWindow::gameWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    //QGraphicsScene *gameScene;
     gameScene = new QGraphicsScene(this);
+    ball *myBall;
+
+    myBall = new ball();
+
     ui->graphicsView->setScene(gameScene);
-
-//    QBrush redBrush(Qt::red);
-
-//    QPen blackpen(Qt::black);
-//    blackpen.setWidth(2);
-
-//    myBall = gameScene->addEllipse(10,10,13,13,myBall.blackpen,myBall.redBrush);
-//    myBall.setFlag(QGraphicsItem::ItemIsMovable);
+    myBall->ellipse = gameScene->addEllipse(10,10,13,13, myBall->blackpen, myBall->redBrush);
+    myBall->ellipse->setFlag(QGraphicsItem::ItemIsMovable);
 }
 
 gameWindow::~gameWindow()

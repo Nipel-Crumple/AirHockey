@@ -4,12 +4,14 @@
 #include <QBrush>
 #include <QPen>
 
-class ball: public QGraphicsEllipseItem
+class ball
 {
 public:
-    ball(QGraphicsScene *scene);
+    ball();
+    //~ball();
     QBrush redBrush;
     QPen blackpen;
+    QGraphicsEllipseItem *ellipse;
 };
 
 #endif // BALL_H
