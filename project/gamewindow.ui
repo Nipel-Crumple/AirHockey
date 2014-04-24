@@ -1,24 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
  <class>gameWindow</class>
- <widget class="QMainWindow" name="gameWindow" >
-  <property name="geometry" >
+ <widget class="QMainWindow" name="gameWindow">
+  <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>801</width>
+    <height>477</height>
    </rect>
   </property>
-  <property name="windowTitle" >
+  <property name="windowTitle">
    <string>gameWindow</string>
   </property>
-  <widget class="QMenuBar" name="menuBar" />
-  <widget class="QToolBar" name="mainToolBar" />
-  <widget class="QWidget" name="centralWidget" />
-  <widget class="QStatusBar" name="statusBar" />
+  <widget class="QWidget" name="centralWidget">
+   <widget class="QGraphicsView" name="graphicsView">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>781</width>
+      <height>401</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: #00ff7f</string>
+    </property>
+   </widget>
+   <zorder>lcdNumber</zorder>
+   <zorder>lcdNumber_2</zorder>
+   <zorder>graphicsView</zorder>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>801</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuGame">
+    <property name="title">
+     <string>Game</string>
+    </property>
+    <addaction name="actionStart_playing"/>
+    <addaction name="actionExit"/>
+   </widget>
+   <addaction name="menuGame"/>
+  </widget>
+  <action name="actionStart_playing">
+   <property name="text">
+    <string>Start playing</string>
+   </property>
+  </action>
+  <action name="actionExit">
+   <property name="text">
+    <string>Exit</string>
+   </property>
+  </action>
  </widget>
- <layoutDefault spacing="6" margin="11" />
- <pixmapfunction></pixmapfunction>
+ <layoutdefault spacing="6" margin="11"/>
  <resources/>
  <connections/>
 </ui>
