@@ -8,7 +8,6 @@ class ball
 {
 public:
     ball();
-    //~ball();
     QBrush redBrush;
     QPen blackpen;
     QGraphicsEllipseItem *ellipse;

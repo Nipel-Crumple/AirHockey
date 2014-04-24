@@ -1,6 +1,7 @@
 #include "gamewindow.h"
 #include "ui_gamewindow.h"
 #include "ball.h"
+#include <QRectF>
 
 gameWindow::gameWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -9,13 +10,14 @@ gameWindow::gameWindow(QWidget *parent) :
     ui->setupUi(this);
 
     gameScene = new QGraphicsScene(this);
-    ball *myBall;
 
+    ball *myBall;                   //creating ball
     myBall = new ball();
 
     ui->graphicsView->setScene(gameScene);
-    myBall->ellipse = gameScene->addEllipse(10,10,13,13, myBall->blackpen, myBall->redBrush);
+    myBall->ellipse = gameScene->addEllipse(QRectF(10.0,10.0,12,20), myBall->blackpen, myBall->redBrush);
     myBall->ellipse->setFlag(QGraphicsItem::ItemIsMovable);
+    myBall->ellipse->setPos(12, 12);
 }
 
 gameWindow::~gameWindow()
