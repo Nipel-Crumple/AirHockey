@@ -13,8 +13,10 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        gamewindow.cpp
+        gamewindow.cpp \
+    ball.cpp
 
-HEADERS  += gamewindow.h
+HEADERS  += gamewindow.h \
+    ball.h
 
 FORMS    += gamewindow.ui

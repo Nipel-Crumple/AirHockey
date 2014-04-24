@@ -1,5 +1,6 @@
 #include "gamewindow.h"
 #include "ui_gamewindow.h"
+#include "ball.h"
 
 gameWindow::gameWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -7,16 +8,17 @@ gameWindow::gameWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    //QGraphicsScene *gameScene;
     gameScene = new QGraphicsScene(this);
     ui->graphicsView->setScene(gameScene);
 
-    QBrush redBrush(Qt::red);
+//    QBrush redBrush(Qt::red);
 
-    QPen blackpen(Qt::black);
-    blackpen.setWidth(2);
+//    QPen blackpen(Qt::black);
+//    blackpen.setWidth(2);
 
-    ball = gameScene->addEllipse(10,10,13,13,blackpen,redBrush);
-    ball->setFlag(QGraphicsItem::ItemIsMovable);
+//    myBall = gameScene->addEllipse(10,10,13,13,myBall.blackpen,myBall.redBrush);
+//    myBall.setFlag(QGraphicsItem::ItemIsMovable);
 }
 
 gameWindow::~gameWindow()

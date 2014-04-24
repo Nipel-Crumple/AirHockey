@@ -24,7 +24,7 @@ private slots:
 private:
     Ui::gameWindow *ui;
     QGraphicsScene *gameScene;
-    QGraphicsEllipseItem *ball;
+    //QGraphicsEllipseItem *ball;
 };
 
 #endif // GAMEWINDOW_H
