@@ -16,7 +16,7 @@ gameWindow::gameWindow(QWidget *parent) :
 
     ui->graphicsView->setScene(gameScene);
     myBall->ellipse = gameScene->addEllipse(QRectF(10.0,10.0,12,20), myBall->blackpen, myBall->redBrush);
-   // myBall->ellipse->setFlag(QGraphicsItem::ItemIsMovable);
+    myBall->ellipse->setFlag(QGraphicsItem::ItemIsMovable);
     myBall->ellipse->setPos(12, 12);
 }
 
