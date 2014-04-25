@@ -5,6 +5,7 @@
 #include <QGraphicsView>
 #include <QGraphicsItem>
 #include <QMainWindow>
+#include <QTimer>
 
 namespace Ui {
 class gameWindow;
@@ -24,6 +25,7 @@ private slots:
 private:
     Ui::gameWindow *ui;
     QGraphicsScene *gameScene;
+    QTimer *timer;
     //QGraphicsEllipseItem *ball;
 };
 

@@ -16,10 +16,33 @@ gameWindow::gameWindow(QWidget *parent) :
 
     ui->graphicsView->setScene(gameScene);
     ui->graphicsView->setRenderHint(QPainter::Antialiasing);        //quality of picture
-    gameScene->setSceneRect(0, 0, 800, 450);
+    gameScene->setSceneRect(0, 0, 780, 450);
 
-    myBall->ellipse = gameScene->addEllipse(QRectF(400,225,12,20), myBall->blackpen, myBall->redBrush);
-    myBall->ellipse->setFlag(QGraphicsItem::ItemIsMovable);
+//    myBall->ellipse = gameScene->addEllipse(QRectF(390,225,12,20), myBall->blackpen, myBall->redBrush);
+//    myBall->ellipse->setFlag(QGraphicsItem::ItemIsMovable);
+
+    QPen myPen = QPen(Qt::blue);
+
+    QLineF TopLine(gameScene->sceneRect().topLeft(), gameScene->sceneRect().topRight());
+    QLineF LeftLine(gameScene->sceneRect().topLeft(), gameScene->sceneRect().bottomLeft());
+    QLineF RightLine(gameScene->sceneRect().topRight(), gameScene->sceneRect().bottomRight());
+    QLineF BottomLine(gameScene->sceneRect().bottomLeft(), gameScene->sceneRect().bottomRight());
+
+    gameScene->addLine(TopLine,myPen);                  //box of playing game
+    gameScene->addLine(LeftLine,myPen);
+    gameScene->addLine(RightLine,myPen);
+    gameScene->addLine(BottomLine,myPen);
+
+    int ItemCount = 1;
+    for (int i = 0; i < ItemCount; i++)         //how many item
+    {
+        ball *myBall = new ball();
+        gameScene->addItem(myBall);
+    }
+
+    timer = new QTimer(this);
+    connect(timer, SIGNAL(timeout()), gameScene, SLOT(advance()));
+    timer->start(100);
 }
 
 gameWindow::~gameWindow()
