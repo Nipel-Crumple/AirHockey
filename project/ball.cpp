@@ -2,15 +2,15 @@
 
 ball::ball()
 {
-    //random start rotation
-    //angle = (qrand() % 360);
-    //setRotation(angle);
+    //random start rotation;
+//    angle = (qrand() % 360);
+//    setRotation(angle);
 
     //set speed
-    speed = 20;
+    speed = 11;
     //random start position
-    int StartX = 400;
-    int StartY = 220;
+    int StartX = 390;
+    int StartY = 200;
 
 //    if ((qrand() % 1))
 //    {
@@ -20,8 +20,8 @@ ball::ball()
 
 //    else
 //    {
-//        StartX = (qrand() % 100);
-//        StartY = (qrand() % 100);
+//        StartX = (qrand() % -100);
+//        StartY = (qrand() % -100);
 //    }
 
     setPos(mapToParent(StartX, StartY));
@@ -71,17 +71,18 @@ void ball::doCollision()
     //Set a new position
 
     //change the angle randomness
-    if ((qrand() % 1))
-    {
-        setRotation(rotation() + (180 + (qrand() % 100)));
-    }
-    else
-    {
-        setRotation(rotation() + (180 - (qrand() % 100)));
-    }
+//    if ((qrand() % 1))
+//    {
+//        setRotation(rotation() + (180 + (qrand() % 100)));
+//    }
+//    else
+//    {
+//        setRotation(rotation() + (180 - (qrand() % 100)));
+//    }
 
+    setRotation(rotation() + 180);
     //see if the new position is in bounds
-    QPointF newpoint = mapToParent(-(boundingRect().width()), -(boundingRect().width() + 2));
+    QPointF newpoint = mapToParent(-(boundingRect().width()), -(boundingRect().width()+10));
 
     if (!scene()->sceneRect().contains(newpoint))
     {
