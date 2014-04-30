@@ -2,34 +2,19 @@
 
 ball::ball()
 {
-    //random start rotation;
-//    angle = (qrand() % 360);
-//    setRotation(angle);
-
     //set speed
-    speed = 11;
-    //random start position
-    int StartX = 390;
-    int StartY = 200;
 
-//    if ((qrand() % 1))
-//    {
-//        StartX = (qrand() % 200);
-//        StartY = (qrand() % 200);
-//    }
-
-//    else
-//    {
-//        StartX = (qrand() % -100);
-//        StartY = (qrand() % -100);
-//    }
+    speed = 1;
+    //start position
+    int StartX = 200;
+    int StartY = 300;
 
     setPos(mapToParent(StartX, StartY));
 }
 
 QRectF ball::boundingRect() const
 {
-    return QRect(0,0,20,20);
+    return QRect(0,0,30,30);
 }
 
 void ball::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
@@ -38,23 +23,15 @@ void ball::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWid
     QBrush Brush(Qt::red);
 
     //basic Collision detection
-
-    if (scene()->collidingItems(this).isEmpty())
+    if (!scene()->collidingItems(this).isEmpty())
     {
-        //no collision
-        Brush.setColor(Qt::green);
-    }
-    else
-    {
-        //collision!!!
-        Brush.setColor(Qt::red);
-
         //set the new position
         doCollision();
     }
 
-    painter->fillRect(rect,Brush);
-    painter->drawRect(rect);
+    painter->setBrush(Brush);
+    painter->drawEllipse(rect);
+
 }
 
 void ball::advance(int phase)
@@ -63,7 +40,7 @@ void ball::advance(int phase)
 
     QPointF location = this->pos();
 
-    setPos(mapToParent(0,-(speed)));
+    setPos(mapToParent(-(speed),-(speed)));
 }
 
 void ball::doCollision()
@@ -73,25 +50,20 @@ void ball::doCollision()
     //change the angle randomness
 //    if ((qrand() % 1))
 //    {
-//        setRotation(rotation() + (180 + (qrand() % 100)));
+//        setRotation(rotation() + (180 - (qrand() % 100)));
 //    }
 //    else
 //    {
-//        setRotation(rotation() + (180 - (qrand() % 100)));
+//        setRotation(rotation() + (180 + (qrand() % 100)));
 //    }
 
-    setRotation(rotation() + 180);
-    //see if the new position is in bounds
-    QPointF newpoint = mapToParent(-(boundingRect().width()), -(boundingRect().width()+10));
+    setRotation(rotation()+45); //HZ
+    //see bydlo position
+    QPointF newpoint_Y = mapToParent(-(boundingRect().width() +3), -(boundingRect().width()+3));
+   // QPointF newpoint_X = mapToParent(-(boundingRect().width()+1), -(boundingRect().width()));
+    if (scene()->sceneRect().contains(newpoint_Y))
+    {
+        setPos(newpoint_Y);
+    }
 
-    if (!scene()->sceneRect().contains(newpoint))
-    {
-        //move it back in bounds
-        newpoint = mapToParent(0,0);
-    }
-    else
-    {
-        //set the new position
-        setPos(newpoint);
-    }
 }

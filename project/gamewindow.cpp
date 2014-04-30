@@ -33,16 +33,13 @@ gameWindow::gameWindow(QWidget *parent) :
     gameScene->addLine(RightLine,myPen);
     gameScene->addLine(BottomLine,myPen);
 
-    int ItemCount = 1;
-    for (int i = 0; i < ItemCount; i++)         //how many item
-    {
-        ball *myBall = new ball();
-        gameScene->addItem(myBall);
-    }
+    //filling objects
+
+    gameScene->addItem(myBall);
 
     timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), gameScene, SLOT(advance()));
-    timer->start(100);
+    timer->start(10);
 }
 
 gameWindow::~gameWindow()
