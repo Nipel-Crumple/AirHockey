@@ -26,23 +26,30 @@ gameWindow::gameWindow(QWidget *parent) :
 
     QPen myPen = QPen(Qt::black);
 
-    QPointF length_top, length_bottom;
-    length_top.setY(20);
-    length_bottom.setY(420);
+    QPointF left_border_top, left_border_bottom, right_border_top, right_border_bottom;
+    left_border_top.setY(20);
+    left_border_top.setX(0);
+    left_border_bottom.setY(420);
+    left_border_bottom.setX(0);
+
+    right_border_top.setY(20);
+    right_border_top.setX(780);
+    right_border_bottom.setY(420);
+    right_border_bottom.setX(780);
 
 
     QLineF TopLine(gameScene->sceneRect().topLeft(), gameScene->sceneRect().topRight());
-    QLineF LeftLineTop(gameScene->sceneRect().topLeft(), length_top);
-    QLineF LeftLineBottom(gameScene->sceneRect().bottomLeft(), length_bottom);
-//    QLineF RightLineTop(gameScene->sceneRect().topRight(), length_top);
-//    QLineF RightLineBottom(gameScene->sceneRect().bottomRight(), length_bottom);     INCORRECT
+    QLineF LeftLineTop(gameScene->sceneRect().topLeft(), left_border_top);
+    QLineF LeftLineBottom(gameScene->sceneRect().bottomLeft(), left_border_bottom);
+    QLineF RightLineTop(gameScene->sceneRect().topRight(), right_border_top);
+    QLineF RightLineBottom(gameScene->sceneRect().bottomRight(), right_border_bottom);
     QLineF BottomLine(gameScene->sceneRect().bottomLeft(), gameScene->sceneRect().bottomRight());
 
     gameScene->addLine(TopLine,myPen);                  //box of playing game
     gameScene->addLine(LeftLineTop,myPen);
     gameScene->addLine(LeftLineBottom,myPen);
-//    gameScene->addLine(RightLineTop,myPen);
-//    gameScene->addLine(RightLineBottom,myPen);  INCORRECT
+    gameScene->addLine(RightLineTop,myPen);
+    gameScene->addLine(RightLineBottom,myPen);  
     gameScene->addLine(BottomLine,myPen);
 
     //filling objects
