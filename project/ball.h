@@ -17,7 +17,8 @@ protected:
 
 private:
     qreal angle;
-    qreal speed;
+    qreal speed_x;
+    qreal speed_y;
     void doCollision();
 };
 
