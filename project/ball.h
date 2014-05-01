@@ -11,6 +11,8 @@ public:
     ball();
     QRectF boundingRect() const;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
+    void rev_speed_x();
+    void rev_speed_y();
 
 protected:
     void advance(int phase);
