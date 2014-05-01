@@ -1,6 +1,7 @@
 #include "gamewindow.h"
 #include "ui_gamewindow.h"
 #include "ball.h"
+#include "stick.h"
 #include <QRectF>
 
 gameWindow::gameWindow(QWidget *parent) :
@@ -14,6 +15,9 @@ gameWindow::gameWindow(QWidget *parent) :
     ball *myBall;                   //creating ball
     myBall = new ball();
 
+    stick *left_stick;              //creating left stick
+    left_stick = new stick();
+
     ui->graphicsView->setScene(gameScene);
     ui->graphicsView->setRenderHint(QPainter::Antialiasing);        //quality of picture
     gameScene->setSceneRect(0, 0, 780, 440);
@@ -21,7 +25,7 @@ gameWindow::gameWindow(QWidget *parent) :
 //    myBall->ellipse = gameScene->addEllipse(QRectF(390,225,12,20), myBall->blackpen, myBall->redBrush);
 //    myBall->ellipse->setFlag(QGraphicsItem::ItemIsMovable);
 
-    QPen myPen = QPen(Qt::blue);
+    QPen myPen = QPen(Qt::black);
 
     QLineF TopLine(gameScene->sceneRect().topLeft(), gameScene->sceneRect().topRight());
     //QLineF LeftLine(gameScene->sceneRect().topLeft(), gameScene->sceneRect().bottomLeft());
@@ -36,6 +40,7 @@ gameWindow::gameWindow(QWidget *parent) :
     //filling objects
 
     gameScene->addItem(myBall);
+    gameScene->addItem(left_stick);
 
     timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), gameScene, SLOT(advance()));
