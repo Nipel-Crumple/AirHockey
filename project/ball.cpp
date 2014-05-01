@@ -4,8 +4,8 @@ ball::ball()
 {
     //set speed
 
-    speed_x = 0.1;
-    speed_y = 0;
+    speed_x = -0.5;
+    speed_y = 5;
     //start position
     int StartX = 100;
     int StartY = 200;
@@ -50,7 +50,7 @@ void ball::doCollision()
 
     setRotation(rotation()+180); //HZ
     //see bydlo position
-    QPointF newpoint = mapToParent(-(boundingRect().width()), -(boundingRect().width()+1));
+    QPointF newpoint = mapToParent(-(boundingRect().width()+speed_x), -(boundingRect().width()+speed_y));
     // QPointF newpoint_X = mapToParent(-(boundingRect().width()+1), -(boundingRect().width()));
     if (scene()->sceneRect().contains(newpoint))
     {

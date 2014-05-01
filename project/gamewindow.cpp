@@ -27,14 +27,20 @@ gameWindow::gameWindow(QWidget *parent) :
 
     QPen myPen = QPen(Qt::black);
 
+    QPointF lenght_Y;
+    lenght_Y.setY(20);
+
+    QPointF
+
     QLineF TopLine(gameScene->sceneRect().topLeft(), gameScene->sceneRect().topRight());
-    //QLineF LeftLine(gameScene->sceneRect().topLeft(), gameScene->sceneRect().bottomLeft());
-    //QLineF RightLine(gameScene->sceneRect().topRight(), gameScene->sceneRect().bottomRight());
+    QLineF LeftLineTop(gameScene->sceneRect().topLeft(), lenght_Y);
+  //QLineF RightLine(gameScene->sceneRect().topRight(), gameScene->sceneRect().bottomRight());
     QLineF BottomLine(gameScene->sceneRect().bottomLeft(), gameScene->sceneRect().bottomRight());
 
     gameScene->addLine(TopLine,myPen);                  //box of playing game
-    //gameScene->addLine(LeftLine,myPen);
-    //gameScene->addLine(RightLine,myPen);
+    gameScene->addLine(LeftLine,myPen);
+
+    gameScene->addLine(RightLine,myPen);
     gameScene->addLine(BottomLine,myPen);
 
     //filling objects
