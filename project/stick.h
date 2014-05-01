@@ -5,11 +5,11 @@
 #include <QGraphicsItem>
 #include <QGraphicsScene>
 #include <QRectF>
-class stick
+class stick: public QGraphicsItem
 {
 public:
     stick();
-    QRectF boundingStick() const;
+    QRectF boundingRect() const;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
 };
 
