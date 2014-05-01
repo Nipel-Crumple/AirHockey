@@ -22,25 +22,27 @@ gameWindow::gameWindow(QWidget *parent) :
     ui->graphicsView->setRenderHint(QPainter::Antialiasing);        //quality of picture
     gameScene->setSceneRect(0, 0, 780, 440);
 
-//    myBall->ellipse = gameScene->addEllipse(QRectF(390,225,12,20), myBall->blackpen, myBall->redBrush);
-//    myBall->ellipse->setFlag(QGraphicsItem::ItemIsMovable);
+
 
     QPen myPen = QPen(Qt::black);
 
-    QPointF lenght_Y;
-    lenght_Y.setY(20);
+    QPointF length_top, length_bottom;
+    length_top.setY(20);
+    length_bottom.setY(420);
 
-    QPointF
 
     QLineF TopLine(gameScene->sceneRect().topLeft(), gameScene->sceneRect().topRight());
-    QLineF LeftLineTop(gameScene->sceneRect().topLeft(), lenght_Y);
-  //QLineF RightLine(gameScene->sceneRect().topRight(), gameScene->sceneRect().bottomRight());
+    QLineF LeftLineTop(gameScene->sceneRect().topLeft(), length_top);
+    QLineF LeftLineBottom(gameScene->sceneRect().bottomLeft(), length_bottom);
+//    QLineF RightLineTop(gameScene->sceneRect().topRight(), length_top);
+//    QLineF RightLineBottom(gameScene->sceneRect().bottomRight(), length_bottom);     INCORRECT
     QLineF BottomLine(gameScene->sceneRect().bottomLeft(), gameScene->sceneRect().bottomRight());
 
     gameScene->addLine(TopLine,myPen);                  //box of playing game
-    gameScene->addLine(LeftLine,myPen);
-
-    gameScene->addLine(RightLine,myPen);
+    gameScene->addLine(LeftLineTop,myPen);
+    gameScene->addLine(LeftLineBottom,myPen);
+//    gameScene->addLine(RightLineTop,myPen);
+//    gameScene->addLine(RightLineBottom,myPen);  INCORRECT
     gameScene->addLine(BottomLine,myPen);
 
     //filling objects
