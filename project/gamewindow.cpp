@@ -3,6 +3,11 @@
 #include "ball.h"
 #include "stick.h"
 #include <QRectF>
+#include <QWidget>
+#include <QKeyEvent>
+
+// shtanga
+const int bar = 50;
 
 gameWindow::gameWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -20,22 +25,20 @@ gameWindow::gameWindow(QWidget *parent) :
 
     ui->graphicsView->setScene(gameScene);
     ui->graphicsView->setRenderHint(QPainter::Antialiasing);        //quality of picture
-    gameScene->setSceneRect(0, 0, 780, 440);
-
-
+    gameScene->setSceneRect(0, 0, this->width()-60, this->height()-80);
 
     QPen myPen = QPen(Qt::black);
 
     QPointF left_border_top, left_border_bottom, right_border_top, right_border_bottom;
-    left_border_top.setY(20);
+    left_border_top.setY(bar);
     left_border_top.setX(0);
-    left_border_bottom.setY(420);
+    left_border_bottom.setY(this->height()-80-bar);
     left_border_bottom.setX(0);
 
-    right_border_top.setY(20);
-    right_border_top.setX(780);
-    right_border_bottom.setY(420);
-    right_border_bottom.setX(780);
+    right_border_top.setY(bar);
+    right_border_top.setX(this->width()-60);
+    right_border_bottom.setY(this->height()-80-bar);
+    right_border_bottom.setX(this->width()-60);
 
 
     QLineF TopLine(gameScene->sceneRect().topLeft(), gameScene->sceneRect().topRight());
@@ -60,6 +63,9 @@ gameWindow::gameWindow(QWidget *parent) :
     timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), gameScene, SLOT(advance()));
     timer->start(10);
+
+    connect(ui->graphicsView, SIGNAL(), gameScene, SLOT(left_stick->move_up()));
+
 }
 
 gameWindow::~gameWindow()

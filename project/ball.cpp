@@ -3,12 +3,11 @@
 ball::ball()
 {
     //set speed
-
-    speed_x = -0.5;
-    speed_y = 5;
+    speed_x = 0.5;
+    speed_y = 0;
     //start position
-    int StartX = 100;
-    int StartY = 200;
+    int StartX = 50;
+    int StartY = 210;
 
     setPos(mapToParent(StartX, StartY));
 }
@@ -47,17 +46,21 @@ void ball::advance(int phase)
 void ball::doCollision()
 {
     //Set a new position
+    setRotation(rotation()+180);
+    //reverse speed because of hit
+    QPointF newpoint_y = mapToParent(-boundingRect().width(), -(boundingRect().width()+speed_y));
+    QPointF newpoint_x = mapToParent(-(boundingRect().width()+speed_x), -boundingRect().width());
 
-    setRotation(rotation()+180); //HZ
-    //see bydlo position
-    QPointF newpoint = mapToParent(-(boundingRect().width()+speed_x), -(boundingRect().width()+speed_y));
-    // QPointF newpoint_X = mapToParent(-(boundingRect().width()+1), -(boundingRect().width()));
-    if (scene()->sceneRect().contains(newpoint))
+    if (scene()->sceneRect().contains(newpoint_y))
     {
-        setPos(newpoint);
+        setPos(newpoint_y);
         rev_speed_x();
+    } else
+    if (scene()->sceneRect().contains(newpoint_x))
+    {
+        setPos(newpoint_x);
+        rev_speed_y();
     }
-
 }
 
 void ball::rev_speed_x()
