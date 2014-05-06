@@ -5,6 +5,7 @@
 #include <QRectF>
 #include <QWidget>
 #include <QKeyEvent>
+#include <QDebug>
 
 // shtanga
 const int bar = 50;
@@ -20,7 +21,7 @@ gameWindow::gameWindow(QWidget *parent) :
     ball *myBall;                   //creating ball
     myBall = new ball();
 
-    stick *left_stick;              //creating left stick
+//    stick *left_stick;              //creating left stick
     left_stick = new stick();
 
     ui->graphicsView->setScene(gameScene);
@@ -60,11 +61,13 @@ gameWindow::gameWindow(QWidget *parent) :
     gameScene->addItem(myBall);
     gameScene->addItem(left_stick);
 
+//    gameScene->installEventFilter(this);
     timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), gameScene, SLOT(advance()));
     timer->start(10);
 
-    connect(ui->graphicsView, SIGNAL(), gameScene, SLOT(left_stick->move_up()));
+
+    //connect(this, SIGNAL(keyPressEvent()), left_stick, SLOT(move_up()));
 
 }
 
@@ -76,4 +79,20 @@ gameWindow::~gameWindow()
 void gameWindow::on_actionExit_triggered()
 {
     qApp->exit();
+}
+
+void gameWindow::keyPressEvent(QKeyEvent *event)
+{
+        QKeyEvent* keyEvent = static_cast<QKeyEvent*>(event);
+        int k = keyEvent->key();
+//        qDebug() << k;
+        if (k == Qt::Key_W)
+        {
+            left_stick->move_up(1);
+        }
+
+        if(k == Qt::Key_S)
+        {
+            left_stick->move_down(1);
+        }
 }

@@ -1,4 +1,5 @@
 #include "ball.h"
+#include <QDebug>
 
 ball::ball()
 {

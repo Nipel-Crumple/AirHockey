@@ -7,6 +7,8 @@
 #include <QMainWindow>
 #include <QTimer>
 
+#include "stick.h"
+
 namespace Ui {
 class gameWindow;
 }
@@ -25,7 +27,9 @@ private slots:
 private:
     Ui::gameWindow *ui;
     QGraphicsScene *gameScene;
+    stick *left_stick;
     QTimer *timer;
+    void keyPressEvent(QKeyEvent *event);
     //QGraphicsEllipseItem *ball;
 };
 

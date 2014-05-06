@@ -21,7 +21,7 @@ void stick::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWi
     painter->drawRect(rect);
 
 }
-
+// necessary to understand variable PHASE
 void stick::move_up(int phase)
 {
     if (!phase) return;
@@ -33,4 +33,9 @@ void stick::move_up(int phase)
 
 void stick::move_down(int phase)
 {
+    if (!phase) return;
+
+    QPointF location = this->pos();
+
+    setPos(mapToParent(0,5));
 }
