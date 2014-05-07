@@ -4,8 +4,8 @@
 ball::ball()
 {
     //set speed
-    speed_x = 1.5;
-    speed_y = -3;
+    speed_x = 1;
+    speed_y = 1;
     //start position
     int StartX = 100;
     int StartY = 165;
@@ -15,7 +15,7 @@ ball::ball()
 
 QRectF ball::boundingRect() const
 {
-    return QRect(0,0,30,30);
+    return QRect(0,0,20,20);
 }
 
 void ball::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)

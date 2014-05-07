@@ -31,7 +31,12 @@ private:
     stick *right_stick;
     QTimer *timer;
     void keyPressEvent(QKeyEvent *event);
-    //QGraphicsEllipseItem *ball;
+    void keyReleaseEvent(QKeyEvent *event);
+    int flag_w;
+    int flag_s;
+    int flag_o;
+    int flag_l;
+    void key_event();
 };
 
 #endif // GAMEWINDOW_H
