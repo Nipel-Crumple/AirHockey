@@ -4,11 +4,11 @@
 ball::ball()
 {
     //set speed
-    speed_x = 0.5;
-    speed_y = 0;
+    speed_x = 1.5;
+    speed_y = -3;
     //start position
-    int StartX = 50;
-    int StartY = 210;
+    int StartX = 100;
+    int StartY = 165;
 
     setPos(mapToParent(StartX, StartY));
 }

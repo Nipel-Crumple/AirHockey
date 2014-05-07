@@ -1,10 +1,20 @@
 #include "stick.h"
 
-stick::stick()
+stick::stick(int flag)
 {
-    int StartX = -5;
     int StartY = 165;
-    setPos(mapToParent(StartX, StartY));
+
+    if(flag == 0)
+    {
+        int StartX = -5;
+        setPos(mapToParent(StartX, StartY));
+    }
+
+    else
+    {
+        int StartX = 740;
+        setPos(mapToParent(StartX, StartY));
+    }
 }
 
 QRectF stick::boundingRect() const

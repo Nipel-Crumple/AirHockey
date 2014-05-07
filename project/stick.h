@@ -8,7 +8,7 @@
 class stick: public QGraphicsItem
 {
 public:
-    stick();
+    stick(int flag);
     QRectF boundingRect() const;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
     void move_up(int phase);

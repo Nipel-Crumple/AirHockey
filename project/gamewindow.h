@@ -28,6 +28,7 @@ private:
     Ui::gameWindow *ui;
     QGraphicsScene *gameScene;
     stick *left_stick;
+    stick *right_stick;
     QTimer *timer;
     void keyPressEvent(QKeyEvent *event);
     //QGraphicsEllipseItem *ball;

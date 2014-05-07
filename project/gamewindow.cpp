@@ -21,8 +21,9 @@ gameWindow::gameWindow(QWidget *parent) :
     ball *myBall;                   //creating ball
     myBall = new ball();
 
-//    stick *left_stick;              //creating left stick
-    left_stick = new stick();
+//    stick *left_stick;
+    left_stick = new stick(0); //creating sticks
+    right_stick = new stick(1);
 
     ui->graphicsView->setScene(gameScene);
     ui->graphicsView->setRenderHint(QPainter::Antialiasing);        //quality of picture
@@ -60,8 +61,8 @@ gameWindow::gameWindow(QWidget *parent) :
 
     gameScene->addItem(myBall);
     gameScene->addItem(left_stick);
+    gameScene->addItem(right_stick);
 
-//    gameScene->installEventFilter(this);
     timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), gameScene, SLOT(advance()));
     timer->start(10);
@@ -83,16 +84,29 @@ void gameWindow::on_actionExit_triggered()
 
 void gameWindow::keyPressEvent(QKeyEvent *event)
 {
-        QKeyEvent* keyEvent = static_cast<QKeyEvent*>(event);
-        int k = keyEvent->key();
-//        qDebug() << k;
-        if (k == Qt::Key_W)
-        {
-            left_stick->move_up(1);
-        }
+    QKeyEvent* keyEvent = static_cast<QKeyEvent*>(event);
+    int k = keyEvent->key();
 
-        if(k == Qt::Key_S)
+    // chose movement usin keyevents
+    if(1) // add execution condition
+    {
+        switch(k)
         {
-            left_stick->move_down(1);
+            case Qt::Key_W:
+                left_stick->move_up(1);
+                break;
+
+            case Qt::Key_S:
+                left_stick->move_down(1);
+                break;
+
+            case Qt::Key_O:
+                right_stick->move_up(1);
+                break;
+
+            case Qt::Key_L:
+                right_stick->move_down(1);
+                break;
         }
+    }
 }
