@@ -7,6 +7,7 @@
 #include <QKeyEvent>
 #include <QDebug>
 
+
 // shtanga
 const int bar = 50;
 
@@ -28,6 +29,8 @@ gameWindow::gameWindow(QWidget *parent) :
     left_stick = new stick(0); //creating sticks
     right_stick = new stick(1);
 
+    ui->menuBar->setGeometry(QRect(0, 0, 800, 25));
+    ui->graphicsView->setGeometry(QRect(20, 40, 760, 420));
     ui->graphicsView->setScene(gameScene);
     ui->graphicsView->setRenderHint(QPainter::Antialiasing);        //quality of picture
     gameScene->setSceneRect(0, 0, this->width()-60, this->height()-80);
@@ -61,10 +64,12 @@ gameWindow::gameWindow(QWidget *parent) :
     gameScene->addLine(BottomLine,myPen);
 
     //filling objects
-
     gameScene->addItem(myBall);
     gameScene->addItem(left_stick);
     gameScene->addItem(right_stick);
+
+    ui->lcdNumber->setGeometry(QRect(300, 10, 64, 23));
+    ui->lcdNumber_2->setGeometry(QRect(400, 10, 64, 23));
 
     timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), gameScene, SLOT(advance()));
