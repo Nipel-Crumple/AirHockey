@@ -71,6 +71,8 @@ gameWindow::gameWindow(QWidget *parent) :
     ui->lcdNumber->setGeometry(QRect(300, 10, 64, 23));
     ui->lcdNumber_2->setGeometry(QRect(400, 10, 64, 23));
 
+  //  connect(myBall, SIGNAL(left_value_changed()), this, SLOT(left_display()));
+
     timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), gameScene, SLOT(advance()));
     timer->start(10);
@@ -85,6 +87,11 @@ gameWindow::~gameWindow()
 void gameWindow::on_actionExit_triggered()
 {
     qApp->exit();
+}
+
+void gameWindow::left_display()
+{
+    ui->lcdNumber->display(ui->lcdNumber->value()+1);
 }
 
 void gameWindow::keyPressEvent(QKeyEvent *event)
@@ -141,12 +148,12 @@ void gameWindow::keyReleaseEvent(QKeyEvent *event)
 
 void gameWindow::key_event()
 {
-    if (flag_w)
+    if (flag_w && left_stick->pos().y() > bar)
         left_stick->move_up(1);
-    if (flag_s == 1)
+    if (flag_s && left_stick->pos().y() < 350-bar)
         left_stick->move_down(1);
-    if (flag_o == 1)
+    if (flag_o && right_stick->pos().y() > bar)
         right_stick->move_up(1);
-    if (flag_l == 1)
+    if (flag_l && right_stick->pos().y() < 350-bar)
         right_stick->move_down(1);
 }

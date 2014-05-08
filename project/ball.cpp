@@ -1,6 +1,5 @@
 #include "ball.h"
 #include "gamewindow.h"
-#include "ui_gamewindow.h"
 #include <QDebug>
 
 ball::ball()
@@ -12,8 +11,8 @@ ball::ball()
     int StartX = 20;
     int StartY = 20;
 
-    left_player = 0;
-    right_player = 0;
+    left_value = 0;
+    right_value = 0;
 
     setPos(mapToParent(StartX, StartY));
 }
@@ -49,12 +48,13 @@ void ball::advance(int phase)
 
     if (pos_x <= -10)
     {
-        left_player ++;
+        left_value++;
+      //  left_value_changed();
         setPos(400, 200);
     } else
     if (pos_x >= 760)
     {
-        right_player ++;
+        right_value ++;
         setPos(300, 200);
     } else
         setPos(mapToParent(-(speed_x),-(speed_y)));
@@ -73,8 +73,6 @@ void ball::doCollision()
       you can see how many times our reverse functions work (thanks to qdebug)
       and another interesting fact: when we want to change speed_x, speed_y is changed.
       so, how does it work?!
-
-      interesting situation: speed == 0 && start_pos == 0
 
       something like this but i have not got enough time :(
       this function should be in ball constructor or in gamewindow

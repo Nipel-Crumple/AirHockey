@@ -37,6 +37,9 @@ private:
     int flag_o;
     int flag_l;
     void key_event();
+
+private slots:
+    void left_display();
 };
 
 #endif // GAMEWINDOW_H
