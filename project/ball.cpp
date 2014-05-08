@@ -1,14 +1,19 @@
 #include "ball.h"
+#include "gamewindow.h"
+#include "ui_gamewindow.h"
 #include <QDebug>
 
 ball::ball()
 {
     //set speed
-    speed_x = 1;
-    speed_y = 1;
+    speed_x = 1.0;
+    speed_y = -0.5;
     //start position
-    int StartX = 100;
-    int StartY = 165;
+    int StartX = 20;
+    int StartY = 20;
+
+    left_player = 0;
+    right_player = 0;
 
     setPos(mapToParent(StartX, StartY));
 }
@@ -40,17 +45,49 @@ void ball::advance(int phase)
     if (!phase) return;
 
     QPointF location = this->pos();
+    int pos_x = this->pos().x();
 
-    setPos(mapToParent(-(speed_x),-(speed_y)));
+    if (pos_x <= -10)
+    {
+        left_player ++;
+        setPos(400, 200);
+    } else
+    if (pos_x >= 760)
+    {
+        right_player ++;
+        setPos(300, 200);
+    } else
+        setPos(mapToParent(-(speed_x),-(speed_y)));
 }
 
 void ball::doCollision()
 {
-    //Set a new position
+    /*
+      https://qt-project.org/search/tag/collision~detection
+      http://qt-project.org/doc/qt-4.7/graphicsview-collidingmice.html#id-63504b08-3dae-4482-8a2d-c636c9b358d7
+      http://doc.crossplatform.ru/qt/4.4.3/graphicsview-collidingmice.html
+      the third link is the second in russian
+
+      it is something about collisions in qt with example
+      i think that we have to rewrite it
+      you can see how many times our reverse functions work (thanks to qdebug)
+      and another interesting fact: when we want to change speed_x, speed_y is changed.
+      so, how does it work?!
+
+      interesting situation: speed == 0 && start_pos == 0
+
+      something like this but i have not got enough time :(
+      this function should be in ball constructor or in gamewindow
+      connect(this, on_right_change(), gameWindow, set_lcd_2());
+    */
+
+
+    //set a new position
     setRotation(rotation()+180);
     //reverse speed because of hit
     QPointF newpoint_y = mapToParent(-boundingRect().width(), -(boundingRect().width()+speed_y));
     QPointF newpoint_x = mapToParent(-(boundingRect().width()+speed_x), -boundingRect().width());
+
 
     if (scene()->sceneRect().contains(newpoint_y))
     {
@@ -62,14 +99,17 @@ void ball::doCollision()
         setPos(newpoint_x);
         rev_speed_y();
     }
+
 }
 
 void ball::rev_speed_x()
 {
+    qDebug() << "x";
     speed_x = (-1)*speed_x;
 }
 
 void ball::rev_speed_y()
 {
+    qDebug() << "y";
     speed_y = (-1)*speed_y;
 }

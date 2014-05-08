@@ -68,7 +68,7 @@ gameWindow::gameWindow(QWidget *parent) :
 
     timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), gameScene, SLOT(advance()));
-    timer->start(1);
+    timer->start(10);
 
 }
 
@@ -87,27 +87,23 @@ void gameWindow::keyPressEvent(QKeyEvent *event)
     QKeyEvent* keyEvent = static_cast<QKeyEvent*>(event);
     int k = keyEvent->key();
 
-    // chose movement usin keyevents
-    if(1) // add execution condition
+    switch(k)
     {
-        switch(k)
-        {
-            case Qt::Key_W:
-                flag_w=1;
-                break;
+        case Qt::Key_W:
+            flag_w = 1;
+            break;
 
-            case Qt::Key_S:
-                flag_s=1;
-                break;
+        case Qt::Key_S:
+            flag_s=1;
+            break;
 
-            case Qt::Key_O:
-                flag_o=1;
-                break;
+        case Qt::Key_O:
+            flag_o=1;
+            break;
 
-            case Qt::Key_L:
-                flag_l=1;
-                break;
-        }
+        case Qt::Key_L:
+            flag_l=1;
+            break;
     }
 
     key_event();
@@ -118,32 +114,29 @@ void gameWindow::keyReleaseEvent(QKeyEvent *event)
     QKeyEvent* keyEvent = static_cast<QKeyEvent*>(event);
     int k = keyEvent->key();
 
-    if(1) // add execution condition
+    switch(k)
     {
-        switch(k)
-        {
-            case Qt::Key_W:
-                flag_w=0;
-                break;
+        case Qt::Key_W:
+            flag_w=0;
+            break;
 
-            case Qt::Key_S:
-                flag_s=0;
-                break;
+        case Qt::Key_S:
+            flag_s=0;
+            break;
 
-            case Qt::Key_O:
-                flag_o=0;
-                break;
+        case Qt::Key_O:
+            flag_o=0;
+            break;
 
-            case Qt::Key_L:
-                flag_l = 0;
-                break;
-        }
+        case Qt::Key_L:
+            flag_l = 0;
+            break;
     }
 }
 
 void gameWindow::key_event()
 {
-    if (flag_w == 1)
+    if (flag_w)
         left_stick->move_up(1);
     if (flag_s == 1)
         left_stick->move_down(1);

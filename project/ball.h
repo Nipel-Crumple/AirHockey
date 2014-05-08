@@ -21,6 +21,8 @@ private:
     qreal angle;
     qreal speed_x;
     qreal speed_y;
+    int left_player;
+    int right_player;
     void doCollision();
 };
 

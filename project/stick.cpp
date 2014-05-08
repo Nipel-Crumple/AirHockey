@@ -31,6 +31,7 @@ void stick::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWi
     painter->drawRect(rect);
 
 }
+
 // necessary to understand variable PHASE
 void stick::move_up(int phase)
 {

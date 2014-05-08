@@ -19,13 +19,13 @@ class gameWindow : public QMainWindow
 
 public:
     explicit gameWindow(QWidget *parent = 0);
+    Ui::gameWindow *ui;
     ~gameWindow();
 
 private slots:
     void on_actionExit_triggered();
 
 private:
-    Ui::gameWindow *ui;
     QGraphicsScene *gameScene;
     stick *left_stick;
     stick *right_stick;
