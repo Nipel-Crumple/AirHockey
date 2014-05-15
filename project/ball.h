@@ -24,13 +24,11 @@ private:
     qreal angle;
     qreal speed_x;
     qreal speed_y;
-    int left_value;
-    int right_value;
     void doCollision();
 
 signals:
-    void left_value_changed(int new_val);
-    void right_value_changed(int new_val);
+    void left_value_changed();
+    void right_value_changed();
 };
 
 #endif // BALL_H

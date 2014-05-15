@@ -11,9 +11,6 @@ ball::ball()
     int StartX = 200;
     int StartY = 100;
 
-    left_value = 0;
-    right_value = 0;
-
     setPos(mapToParent(StartX, StartY));
 }
 
@@ -48,14 +45,12 @@ void ball::advance(int phase)
 
     if (pos_x <= -10)
     {
-        left_value++;
-        emit left_value_changed(left_value);
+        emit left_value_changed();
         setPos(400, 200);
     } else
     if (pos_x >= 760)
     {
-        right_value ++;
-        emit right_value_changed(right_value);
+        emit right_value_changed();
         setPos(300, 200);
     } else
         setPos(mapToParent(-(speed_x),-(speed_y)));
@@ -75,9 +70,7 @@ void ball::doCollision()
       and another interesting fact: when we want to change speed_x, speed_y is changed.
       so, how does it work?!
 
-      something like this but i have not got enough time :(
-      this function should be in ball constructor or in gamewindow
-      connect(this, on_right_change(), gameWindow, set_lcd_2());
+      and we also need non-scalable main window. i can't find anything :(
     */
 
 

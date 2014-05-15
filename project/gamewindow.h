@@ -24,8 +24,8 @@ public:
 
 private slots:
     void on_actionExit_triggered();
-    void left_display(int val);
-    void right_display(int val);
+    void left_display();
+    void right_display();
 
 private:
     QGraphicsScene *gameScene;
@@ -40,7 +40,7 @@ private:
     int flag_o;
     int flag_l;
     void key_event();
-
+    void start_new_game(int);
 };
 
 #endif // GAMEWINDOW_H

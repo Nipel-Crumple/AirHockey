@@ -5,11 +5,13 @@
 #include <QRectF>
 #include <QWidget>
 #include <QKeyEvent>
+#include <QMessageBox>
 #include <QDebug>
 
 
 // shtanga
 const int bar = 50;
+const int WIN_SCORE = 7;
 
 gameWindow::gameWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -70,8 +72,8 @@ gameWindow::gameWindow(QWidget *parent) :
     ui->lcdNumber->setGeometry(QRect(300, 10, 64, 23));
     ui->lcdNumber_2->setGeometry(QRect(400, 10, 64, 23));
 
-    connect(myBall, SIGNAL(left_value_changed(int)), this, SLOT(left_display(int)));
-    connect(myBall, SIGNAL(right_value_changed(int)), this, SLOT(right_display(int)));
+    connect(myBall, SIGNAL(left_value_changed()), this, SLOT(left_display()));
+    connect(myBall, SIGNAL(right_value_changed()), this, SLOT(right_display()));
 
     timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), gameScene, SLOT(advance()));
@@ -84,19 +86,60 @@ gameWindow::~gameWindow()
     delete ui;
 }
 
+void gameWindow::start_new_game(int winner)
+{
+    if (winner == 0)
+    {
+        QMessageBox* pmbx = new QMessageBox("The right player is winner!",
+                            "Start new game?",
+                            QMessageBox::Information,
+                            QMessageBox::Yes,
+                            QMessageBox::No,
+                            QMessageBox::Cancel);
+        int n = pmbx->exec();
+        delete pmbx;
+        if (n == QMessageBox::Yes)
+        {
+            ui->lcdNumber->display(0);
+            ui->lcdNumber_2->display(0);
+        } else
+            qApp->exit();
+    } else
+    {
+        QMessageBox* pmbx = new QMessageBox("The left player is winner!",
+                            "Start new game?",
+                            QMessageBox::Information,
+                            QMessageBox::Yes,
+                            QMessageBox::No,
+                            QMessageBox::Cancel);
+        int n = pmbx->exec();
+        delete pmbx;
+        if (n == QMessageBox::Yes)
+        {
+            ui->lcdNumber->display(0);
+            ui->lcdNumber_2->display(0);
+        } else
+            qApp->exit();
+    }
+}
+
 void gameWindow::on_actionExit_triggered()
 {
     qApp->exit();
 }
 
-void gameWindow::left_display(int val)
+void gameWindow::left_display()
 {
-    ui->lcdNumber->display(val);
+    ui->lcdNumber->display(ui->lcdNumber->value()+1);
+    if (ui->lcdNumber->value() == WIN_SCORE)
+        start_new_game(0);
 }
 
-void gameWindow::right_display(int val)
+void gameWindow::right_display()
 {
-    ui->lcdNumber_2->display(val);
+    ui->lcdNumber_2->display(ui->lcdNumber_2->value()+1);
+    if (ui->lcdNumber_2->value() == WIN_SCORE)
+        start_new_game(1);
 }
 
 void gameWindow::keyPressEvent(QKeyEvent *event)
