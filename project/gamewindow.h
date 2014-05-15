@@ -6,7 +6,7 @@
 #include <QGraphicsItem>
 #include <QMainWindow>
 #include <QTimer>
-
+#include "ball.h"
 #include "stick.h"
 
 namespace Ui {
@@ -24,11 +24,14 @@ public:
 
 private slots:
     void on_actionExit_triggered();
+    void left_display(int val);
+    void right_display(int val);
 
 private:
     QGraphicsScene *gameScene;
     stick *left_stick;
     stick *right_stick;
+    ball *myBall;
     QTimer *timer;
     void keyPressEvent(QKeyEvent *event);
     void keyReleaseEvent(QKeyEvent *event);
@@ -38,8 +41,6 @@ private:
     int flag_l;
     void key_event();
 
-private slots:
-    void left_display();
 };
 
 #endif // GAMEWINDOW_H

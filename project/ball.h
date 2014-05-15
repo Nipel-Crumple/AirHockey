@@ -4,9 +4,12 @@
 #include <QGraphicsItem>
 #include <QGraphicsScene>
 #include <QRectF>
+#include <QObject>
 
-class ball : public QGraphicsItem
+class ball : public QObject, public QGraphicsItem
 {
+    Q_OBJECT
+
 public:
     ball();
     QRectF boundingRect() const;
@@ -26,7 +29,8 @@ private:
     void doCollision();
 
 signals:
-    void left_value_changed();
+    void left_value_changed(int new_val);
+    void right_value_changed(int new_val);
 };
 
 #endif // BALL_H

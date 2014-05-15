@@ -5,11 +5,11 @@
 ball::ball()
 {
     //set speed
-    speed_x = 1.0;
-    speed_y = -0.5;
+    speed_x = 2.0;
+    speed_y = 0;
     //start position
-    int StartX = 20;
-    int StartY = 20;
+    int StartX = 200;
+    int StartY = 100;
 
     left_value = 0;
     right_value = 0;
@@ -49,12 +49,13 @@ void ball::advance(int phase)
     if (pos_x <= -10)
     {
         left_value++;
-      //  left_value_changed();
+        emit left_value_changed(left_value);
         setPos(400, 200);
     } else
     if (pos_x >= 760)
     {
         right_value ++;
+        emit right_value_changed(right_value);
         setPos(300, 200);
     } else
         setPos(mapToParent(-(speed_x),-(speed_y)));
