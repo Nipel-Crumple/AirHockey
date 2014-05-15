@@ -104,7 +104,8 @@ void gameWindow::start_new_game(int winner)
             ui->lcdNumber_2->display(0);
         } else
             qApp->exit();
-    } else
+    }
+    else if (winner == 1)
     {
         QMessageBox* pmbx = new QMessageBox("The left player is winner!",
                             "Start new game?",
@@ -118,6 +119,26 @@ void gameWindow::start_new_game(int winner)
         {
             ui->lcdNumber->display(0);
             ui->lcdNumber_2->display(0);
+        } else
+            qApp->exit();
+    }
+    else
+    {
+        myBall->stopSpeed();
+        QMessageBox* pmbx = new QMessageBox("GAME NAME",
+                            "Start new game?",
+                            QMessageBox::Information,
+                            QMessageBox::Yes,
+                            QMessageBox::No,
+                            QMessageBox::Cancel);
+        int n = pmbx->exec();
+        delete pmbx;
+        if (n == QMessageBox::Yes)
+        {
+            ui->lcdNumber->display(0);
+            ui->lcdNumber_2->display(0);
+            myBall->setSpeed();
+            myBall->setPos(300, 200);
         } else
             qApp->exit();
     }
@@ -204,4 +225,9 @@ void gameWindow::key_event()
         right_stick->move_up(1);
     if (flag_l && right_stick->pos().y() < 350-bar)
         right_stick->move_down(1);
+}
+
+void gameWindow::on_actionStart_playing_triggered()
+{
+    this->start_new_game(-1);
 }

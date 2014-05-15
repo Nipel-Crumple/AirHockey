@@ -16,6 +16,8 @@ public:
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
     void rev_speed_x();
     void rev_speed_y();
+    void stopSpeed();
+    void setSpeed();
 
 protected:
     void advance(int phase);

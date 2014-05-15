@@ -2,15 +2,19 @@
 #include "gamewindow.h"
 #include <QDebug>
 
-ball::ball()
+void ball::setSpeed()
 {
     //set speed
     speed_x = 2.0;
     speed_y = 0;
+}
+
+ball::ball()
+{
     //start position
     int StartX = 200;
     int StartY = 100;
-
+    setSpeed();
     setPos(mapToParent(StartX, StartY));
 }
 
@@ -104,4 +108,10 @@ void ball::rev_speed_y()
 {
     qDebug() << "y";
     speed_y = (-1)*speed_y;
+}
+
+void ball::stopSpeed()
+{
+    speed_x = 0;
+    speed_y = 0;
 }

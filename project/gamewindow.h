@@ -26,6 +26,7 @@ private slots:
     void on_actionExit_triggered();
     void left_display();
     void right_display();
+    void on_actionStart_playing_triggered();
 
 private:
     QGraphicsScene *gameScene;
