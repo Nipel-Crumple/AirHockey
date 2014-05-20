@@ -18,6 +18,7 @@ public:
     void rev_speed_y();
     void stopSpeed();
     void setSpeed();
+    int doCollision();
 
 protected:
     void advance(int phase);
@@ -26,7 +27,7 @@ private:
     qreal angle;
     qreal speed_x;
     qreal speed_y;
-    void doCollision();
+
 
 signals:
     void left_value_changed();

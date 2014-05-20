@@ -2,11 +2,12 @@
 #include "gamewindow.h"
 #include <QDebug>
 
+
 void ball::setSpeed()
 {
     //set speed
-    speed_x = 2.0;
-    speed_y = 0;
+    speed_x = 1;
+    speed_y = 1;
 }
 
 ball::ball()
@@ -60,7 +61,7 @@ void ball::advance(int phase)
         setPos(mapToParent(-(speed_x),-(speed_y)));
 }
 
-void ball::doCollision()
+int ball::doCollision()
 {
     /*
       https://qt-project.org/search/tag/collision~detection
@@ -76,38 +77,66 @@ void ball::doCollision()
 
       and we also need non-scalable main window. i can't find anything :(
     */
+    QPointF location = this->pos();
+//    qDebug() << location.x();
+   qDebug() << location.x();
 
 
-    //set a new position
-    setRotation(rotation()+180);
-    //reverse speed because of hit
-    QPointF newpoint_y = mapToParent(-boundingRect().width(), -(boundingRect().width()+speed_y));
-    QPointF newpoint_x = mapToParent(-(boundingRect().width()+speed_x), -boundingRect().width());
-
-
-    if (scene()->sceneRect().contains(newpoint_y))
+    if ((location.y() > 377) || (location.y() < 0))     //top and bottom border
     {
-        setPos(newpoint_y);
-        rev_speed_x();
-    } else
-    if (scene()->sceneRect().contains(newpoint_x))
-    {
-        setPos(newpoint_x);
         rev_speed_y();
     }
+
+    if ((location.x() < 0) || (location.x() > 720))     //top and bottom border
+    {
+        rev_speed_x();
+    }
+
+
+
+//    //set a new position
+//    setRotation(rotation()+180);
+//    QPointF newpoint_y;
+//    QPointF newpoint_x;
+
+//    //reverse speed because of hit
+//    if (speed_x >= 0)
+//    {
+//       newpoint_y = mapToParent(-boundingRect().width(), -(boundingRect().width()+speed_y));
+//       newpoint_x = mapToParent(-(boundingRect().width()+speed_x), -boundingRect().width());
+//    }
+
+//    if (scene()->sceneRect().contains(newpoint_y))
+//    {
+//        setPos(newpoint_y);
+//        rev_speed_x();
+//        return 0;
+//    }
+
+//    if (scene()->sceneRect().contains(newpoint_x))
+//    {
+//        setPos(newpoint_x);
+//        qDebug() << "x = " << speed_x;
+//        rev_speed_y();
+//         qDebug() << "x = " << speed_x;
+//        return 0;
+//    }
+
+
 
 }
 
 void ball::rev_speed_x()
 {
-    qDebug() << "x";
+    //qDebug() << "x";
     speed_x = (-1)*speed_x;
 }
 
 void ball::rev_speed_y()
 {
-    qDebug() << "y";
+    //qDebug() << speed_y;
     speed_y = (-1)*speed_y;
+    //qDebug() << speed_y;
 }
 
 void ball::stopSpeed()
