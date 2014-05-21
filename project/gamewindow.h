@@ -21,6 +21,9 @@ public:
     explicit gameWindow(QWidget *parent = 0);
     Ui::gameWindow *ui;
     ~gameWindow();
+    stick *left_stick;
+    stick *right_stick;
+
 
 private slots:
     void on_actionExit_triggered();
@@ -30,8 +33,7 @@ private slots:
 
 private:
     QGraphicsScene *gameScene;
-    stick *left_stick;
-    stick *right_stick;
+
     ball *myBall;
     QTimer *timer;
     void keyPressEvent(QKeyEvent *event);

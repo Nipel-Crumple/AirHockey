@@ -28,11 +28,13 @@ void ball::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWid
 {
     QRectF rect = boundingRect();
     QBrush Brush(Qt::red);
-
+//    qDebug() << "location_X" << this->x();
+//    qDebug() << "location_Y" << this->y();
     //basic Collision detection
     if (!scene()->collidingItems(this).isEmpty())
     {
         //set the new position
+        qDebug() << scene()->collidingItems(this);
         doCollision();
     }
 
@@ -51,11 +53,13 @@ void ball::advance(int phase)
     if (pos_x <= -10)
     {
         emit left_value_changed();
+        setSpeed();
         setPos(400, 200);
     } else
     if (pos_x >= 760)
     {
         emit right_value_changed();
+        setSpeed();
         setPos(300, 200);
     } else
         setPos(mapToParent(-(speed_x),-(speed_y)));
@@ -78,19 +82,22 @@ int ball::doCollision()
       and we also need non-scalable main window. i can't find anything :(
     */
     QPointF location = this->pos();
-//    qDebug() << location.x();
-   qDebug() << location.x();
-
+    //qDebug() << location.y();
+    //qDebug() << location.x();
+//    if (this->collidesWithItem(gameWindow.left_stick, Qt::IntersectsItemShape))
+//        stopSpeed();
 
     if ((location.y() > 377) || (location.y() < 0))     //top and bottom border
     {
         rev_speed_y();
     }
 
-    if ((location.x() < 0) || (location.x() > 720))     //top and bottom border
+    if ((location.x() < 0) || (location.x() > 720))     //left and right
     {
         rev_speed_x();
     }
+
+
 
 
 
@@ -128,8 +135,8 @@ int ball::doCollision()
 
 void ball::rev_speed_x()
 {
-    //qDebug() << "x";
-    speed_x = (-1)*speed_x;
+    speed_x = (-1)*(speed_x + speed_x/8);
+
 }
 
 void ball::rev_speed_y()

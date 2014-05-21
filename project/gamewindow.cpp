@@ -25,10 +25,12 @@ gameWindow::gameWindow(QWidget *parent) :
 
     gameScene = new QGraphicsScene(this);
 
-    myBall = new ball();
+
 
     left_stick = new stick(0); //creating sticks
     right_stick = new stick(1);
+
+     myBall = new ball();
 
     ui->menuBar->setGeometry(QRect(0, 0, 800, 25));
     ui->graphicsView->setGeometry(QRect(20, 40, 760, 420));
