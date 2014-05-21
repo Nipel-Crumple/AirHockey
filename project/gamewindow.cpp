@@ -109,8 +109,11 @@ void gameWindow::start_new_game(int winner)
         {
             ui->lcdNumber->display(0);
             ui->lcdNumber_2->display(0);
-        } else
+        }
+        else if (n == QMessageBox::No)
             qApp->exit();
+        else
+            myBall->setSpeed();
     }
     else if (winner == 1)
     {
@@ -126,11 +129,15 @@ void gameWindow::start_new_game(int winner)
         {
             ui->lcdNumber->display(0);
             ui->lcdNumber_2->display(0);
-        } else
+        }
+        else if (n == QMessageBox::No)
             qApp->exit();
+        else
+            myBall->setSpeed();
     }
     else
     {
+        myBall->remember_speed();
         myBall->stopSpeed();
         QMessageBox* pmbx = new QMessageBox("Welcome to Hockey 3002",
                             "Start new game?",
@@ -146,8 +153,11 @@ void gameWindow::start_new_game(int winner)
             ui->lcdNumber_2->display(0);
             myBall->setSpeed();
             myBall->setPos(300, 200);
-        } else
+        }
+        else if (n == QMessageBox::No)
             qApp->exit();
+        else
+            myBall->installTempSpeed();
     }
 }
 

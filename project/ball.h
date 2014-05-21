@@ -17,8 +17,12 @@ public:
     void rev_speed_x();
     void rev_speed_y();
     void stopSpeed();
+    void remember_speed();
+    void installTempSpeed();
     void setSpeed();
     void doCollision();
+    qreal tempSpeed_x;
+    qreal tempSpeed_y;
 
 protected:
     void advance(int phase);

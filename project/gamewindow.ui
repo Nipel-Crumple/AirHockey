@@ -30,7 +30,7 @@
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color:#c7fcec</string>
+     <string notr="true">background-color: #c7fcec</string>
     </property>
    </widget>
    <widget class="QLCDNumber" name="lcdNumber">

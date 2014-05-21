@@ -109,3 +109,15 @@ void ball::stopSpeed()
     speed_x = 0;
     speed_y = 0;
 }
+
+void ball::remember_speed()
+{
+    tempSpeed_x = speed_x;
+    tempSpeed_y = speed_y;
+}
+
+void ball::installTempSpeed()
+{
+    speed_x = tempSpeed_x;
+    speed_y = tempSpeed_y;
+}
