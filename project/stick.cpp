@@ -39,7 +39,7 @@ void stick::move_up(int phase)
 
     QPointF location = this->pos();
 
-    setPos(mapToParent(0,-5));
+    setPos(mapToParent(0,-10));
 }
 
 void stick::move_down(int phase)
@@ -48,5 +48,5 @@ void stick::move_down(int phase)
 
     QPointF location = this->pos();
 
-    setPos(mapToParent(0,5));
+    setPos(mapToParent(0,10));
 }

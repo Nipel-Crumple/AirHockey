@@ -18,7 +18,7 @@ public:
     void rev_speed_y();
     void stopSpeed();
     void setSpeed();
-    int doCollision();
+    void doCollision();
 
 protected:
     void advance(int phase);

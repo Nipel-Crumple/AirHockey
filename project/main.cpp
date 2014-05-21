@@ -6,7 +6,7 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
-    QMessageBox* pmbx = new QMessageBox("GAME NAME",
+    QMessageBox* pmbx = new QMessageBox("Welcome to Hockey 3002",
                         "Start the game?",
                         QMessageBox::Information,
                         QMessageBox::Yes,

@@ -17,7 +17,7 @@
    <bool>false</bool>
   </property>
   <property name="windowTitle">
-   <string>GAME NAME</string>
+   <string>Hockey 3002</string>
   </property>
   <widget class="QWidget" name="centralWidget">
    <widget class="QGraphicsView" name="graphicsView">
@@ -30,7 +30,7 @@
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true"/>
+     <string notr="true">background-color:#c7fcec</string>
     </property>
    </widget>
    <widget class="QLCDNumber" name="lcdNumber">
@@ -42,7 +42,10 @@
       <height>23</height>
      </rect>
     </property>
-    <property name="numDigits">
+    <property name="styleSheet">
+     <string notr="true">background-color:white;</string>
+    </property>
+    <property name="digitCount">
      <number>1</number>
     </property>
    </widget>
@@ -55,7 +58,10 @@
       <height>23</height>
      </rect>
     </property>
-    <property name="numDigits">
+    <property name="styleSheet">
+     <string notr="true">background-color: white</string>
+    </property>
+    <property name="digitCount">
      <number>1</number>
     </property>
    </widget>
@@ -66,7 +72,7 @@
      <x>0</x>
      <y>0</y>
      <width>801</width>
-     <height>25</height>
+     <height>20</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuGame">

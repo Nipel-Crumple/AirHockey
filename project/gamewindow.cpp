@@ -10,7 +10,7 @@
 
 
 // shtanga
-const int bar = 50;
+const int bar = 40;
 const int WIN_SCORE = 7;
 
 gameWindow::gameWindow(QWidget *parent) :
@@ -52,6 +52,9 @@ gameWindow::gameWindow(QWidget *parent) :
     right_border_bottom.setX(this->width()-60);
 
 
+
+
+
     QLineF TopLine(gameScene->sceneRect().topLeft(), gameScene->sceneRect().topRight());
     QLineF LeftLineTop(gameScene->sceneRect().topLeft(), left_border_top);
     QLineF LeftLineBottom(gameScene->sceneRect().bottomLeft(), left_border_bottom);
@@ -72,7 +75,9 @@ gameWindow::gameWindow(QWidget *parent) :
     gameScene->addItem(right_stick);
 
     ui->lcdNumber->setGeometry(QRect(300, 10, 64, 23));
+    ui->lcdNumber->setPalette(Qt::black);
     ui->lcdNumber_2->setGeometry(QRect(400, 10, 64, 23));
+    ui->lcdNumber_2->setPalette(Qt::black);
 
     connect(myBall, SIGNAL(left_value_changed()), this, SLOT(left_display()));
     connect(myBall, SIGNAL(right_value_changed()), this, SLOT(right_display()));
@@ -127,7 +132,7 @@ void gameWindow::start_new_game(int winner)
     else
     {
         myBall->stopSpeed();
-        QMessageBox* pmbx = new QMessageBox("GAME NAME",
+        QMessageBox* pmbx = new QMessageBox("Welcome to Hockey 3002",
                             "Start new game?",
                             QMessageBox::Information,
                             QMessageBox::Yes,
@@ -221,11 +226,11 @@ void gameWindow::key_event()
 {
     if (flag_w && left_stick->pos().y() > bar)
         left_stick->move_up(1);
-    if (flag_s && left_stick->pos().y() < 350-bar)
+    if (flag_s && left_stick->pos().y() < 345-bar)
         left_stick->move_down(1);
     if (flag_o && right_stick->pos().y() > bar)
         right_stick->move_up(1);
-    if (flag_l && right_stick->pos().y() < 350-bar)
+    if (flag_l && right_stick->pos().y() < 345-bar)
         right_stick->move_down(1);
 }
 
