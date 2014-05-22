@@ -5,6 +5,7 @@
 #include <QGraphicsScene>
 #include <QRectF>
 #include <QObject>
+#include <QTimer>
 
 class ball : public QObject, public QGraphicsItem
 {
@@ -28,14 +29,21 @@ protected:
     void advance(int phase);
 
 private:
+    QTimer *timer_x;
+    QTimer *timer_y;
     qreal angle;
     qreal speed_x;
     qreal speed_y;
-
+    int flag_x;
+    int flag_y;
 
 signals:
     void left_value_changed();
     void right_value_changed();
+
+public slots:
+    void set_flag_x();
+    void set_flag_y();
 };
 
 #endif // BALL_H

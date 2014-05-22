@@ -1,8 +1,11 @@
 #include "ball.h"
 #include "gamewindow.h"
 #include <QDebug>
+#include <QTimer>
 #include <time.h>
+
 const int SCALER = 8;
+const int COLLIS_TIME = 300;
 const int X_0 = 345, Y_0 = 190;
 
 void ball::setSpeed()
@@ -18,6 +21,9 @@ void ball::setSpeed()
         speed_y = (qrand()%8+8)*0.1;
     else
         speed_y = -(qrand()%8+8)*0.1;
+
+    flag_x = 1;
+    flag_y = 1;
 }
 
 ball::ball()
@@ -48,7 +54,6 @@ void ball::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWid
 
     painter->setBrush(Brush);
     painter->drawEllipse(rect);
-
 }
 
 void ball::advance(int phase)
@@ -79,14 +84,26 @@ void ball::doCollision()
 
     if ((location.y() > 377) || (location.y() < 0))     //top and bottom border
     {
-
-        rev_speed_y();
-
+        if (flag_y)
+        {
+            rev_speed_y();
+            flag_y = 0;
+        }
+        timer_y = new QTimer(this);
+        connect(timer_y, SIGNAL(timeout()), this, SLOT(set_flag_y()));
+        timer_y->start(COLLIS_TIME);
     }
 
     if ((location.x() < 0) || (location.x() > 720))     //left and right
     {
-        rev_speed_x();
+        if (flag_x)
+        {
+            rev_speed_x();
+            flag_x = 0;
+        }
+        timer_x = new QTimer(this);
+        connect(timer_x, SIGNAL(timeout()), this, SLOT(set_flag_x()));
+        timer_x->start(COLLIS_TIME);
     }
 
 }
@@ -94,14 +111,23 @@ void ball::doCollision()
 void ball::rev_speed_x()
 {
     speed_x = (-1)*(speed_x + speed_x/SCALER);
-
+    // qDebug() << "x";
 }
 
 void ball::rev_speed_y()
 {
-    //qDebug() << speed_y;
     speed_y = (-1)*speed_y;
-    //qDebug() << speed_y;
+    // qDebug() << "y";
+}
+
+void ball::set_flag_x()
+{
+    flag_x = 1;
+}
+
+void ball::set_flag_y()
+{
+    flag_y = 1;
 }
 
 void ball::stopSpeed()

@@ -79,8 +79,8 @@ gameWindow::gameWindow(QWidget *parent) :
     ui->lcdNumber_2->setGeometry(QRect(400, 10, 64, 23));
     ui->lcdNumber_2->setPalette(Qt::black);
 
-    connect(myBall, SIGNAL(left_value_changed()), this, SLOT(left_display()));
-    connect(myBall, SIGNAL(right_value_changed()), this, SLOT(right_display()));
+    connect(myBall, SIGNAL(left_value_changed()), this, SLOT(right_display()));
+    connect(myBall, SIGNAL(right_value_changed()), this, SLOT(left_display()));
 
     timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), gameScene, SLOT(advance()));

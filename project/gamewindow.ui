@@ -30,7 +30,7 @@
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: #c7fcec</string>
+     <string notr="true"/>
     </property>
    </widget>
    <widget class="QLCDNumber" name="lcdNumber">
@@ -72,7 +72,7 @@
      <x>0</x>
      <y>0</y>
      <width>801</width>
-     <height>20</height>
+     <height>25</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuGame">
